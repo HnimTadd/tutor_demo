@@ -1,9 +1,9 @@
 # Tutor page demo
 ```Tech include:```
-1. ReactJs
-2. Scss module
-3. classname
+1. Gatsby
 
 ```Demo:```
-1. Run ```npm start```
-2. open [host](https:\\localhost.com) with url: ```localhost:...``` 
+1. cd into root directory
+2. Run ```npm run develop```
+3. open [localhost](http:\\localhost:8000) with url: ```http://localhost:8000``` 
+
