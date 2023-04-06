@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "./Avatar"
+import Avatar from "./../Avatar"
 const PostBar = (props) => {
     return <div className="flex flex-col gap-5 p-4 pl-6 rounded-[20px] border w-[750px]">
         <div className="flex flex-row justify-start items-center border-b border-b-slate-500 pb-5 gap-4">
@@ -10,7 +10,7 @@ const PostBar = (props) => {
             placeholder="Write something"
             ></input>
         </div>
-        <div className="flex flex-row justify-between items-center ">
+        <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row justify-between items-center gap-3">
                 <img src="/static/city.png"></img>
                 City, State Zip

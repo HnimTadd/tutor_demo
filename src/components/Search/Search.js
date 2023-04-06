@@ -43,7 +43,7 @@ const Search = (props) => {
         }
     }
     return (
-        <form className="max-w-sm px-4">
+        <form className="max-w-sm relative mt-[40px]">
             <div className="relative rounded-[30%]">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
