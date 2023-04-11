@@ -1,0 +1,21 @@
+import Call from './call.png';
+import City from './city.png';
+import Email from './email.png';
+import Extend from './extend.png';
+import Filter from './filter.png';
+import Loupe from './loupe.png';
+import New from './new.png';
+import Phone from  './phone.png';
+import LogOut from './logOut.png';
+import Avatar from './avatar.png';
+
+export const CallImg = Call;
+export const CityImg = City;
+export const EmailImg = Email;
+export const ExtendImg = Extend;
+export const FilterImg = Filter;
+export const Loupemg = Loupe;
+export const NewImg = New;
+export const Phonemg = Phone;
+export const LogOutImg = LogOut;
+export const AvatarImg = Avatar;
