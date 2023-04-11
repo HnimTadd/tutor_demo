@@ -48,61 +48,66 @@ const  PostModal= (props) =>{
             </div>
             {/*body*/}
             <div className="relative p-6 flex-col w-full">
-              <form className="w-full max-w-full  ">
-                <div className="w-ful flex items-center border-b border-teal-500 py-2">
-                  <label>
+              <form className="w-[700px] max-w-full  ">
+                <div className="w-full flex flex-row items-center border-b border-teal-500 py-4">
+                  <label className='flex-[1]'>
                     Môn
-                    <input
-                      ref={subject}
-                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                      type="text" 
-                      aria-label="Subject"
-                    />
                   </label>
+                  :
+                  <input
+                    ref={subject}
+                    className="flex-[6] appearance-none bg-transparent border-none  text-gray-700 mr-3 h-full px-3 leading-tight focus:outline-none"
+                    type="text" 
+                    aria-label="Subject"
+                  />
                 </div>
-                <div className="w-full flex items-center border-b border-teal-500 py-2">
-                  <label>
+                <div className="w-full flex flex-row justify-between items-center border-b border-teal-500 py-4">
+                  <label className='flex-[1]'>
                     Hình thức
-                    <input
-                      ref={type}
-                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                      type="text"
-                      aria-label="Type"
-                    />
                   </label>
+                  :
+                  <input
+                    ref={type}
+                    className="flex-[6] appearance-none bg-transparent border-none  text-gray-700 mr-3 h-full px-3 leading-tight focus:outline-none"
+                    type="text"
+                    aria-label="Type"
+                  />
                 </div>
-                <div className="w-full flex items-center border-b border-teal-500 py-2">
-                  <label>
+                <div className="w-full flex items-center border-b border-teal-500 py-4">
+                  <label className='flex-[1]'>
                     Địa điểm
-                    <input
-                      ref={location}
-                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" 
-                      type="text"
-                      aria-label="Address"
-                    />
                   </label>
+                  :
+                  <input
+                    ref={location}
+                    className="flex-[6] appearance-none bg-transparent border-none text-gray-700 mr-3 h-full px-3 leading-tight focus:outline-none" 
+                    type="text"
+                    aria-label="Address"
+                  />
                 </div>
-                <div className="w-full flex items-center border-b border-teal-500 py-2">
-                  <label>
+                <div className="w-full flex items-center border-b border-teal-500 py-4">
+                  <label className='flex-[1]'>
                     Yêu cầu
-                    <input
-                      ref={requirement}
-                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                      type="text"
-                      aria-label="Requirement"
-                    />
-                  </label>
+                  </label> 
+                  :
+                  <input
+                    ref={requirement}
+                    className="flex-[6] appealrance-none bg-transparent border-none text-gray-700 mr-3 h-full px-3 leading-tight focus:outline-none"
+                    type="text"
+                    aria-label="Requirement"
+                  />
                 </div>
-                <div className="w-full flex items-center border-b border-teal-500 py-2">
-                  <label>
+                <div className="w-full flex items-center border-b border-teal-500 py-4">
+                  <label className='flex-[1]'>
                     Lương
-                    <input
-                      ref={salary}
-                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                      type="text"
-                      aria-label="Salary"
-                    />
                   </label>
+                  :
+                  <input
+                    ref={salary}
+                    className="flex-[6] appearance-none bg-transparent border-none text-gray-700 mr-3 h-full px-3 leading-tight focus:outline-none"
+                    type="text"
+                    aria-label="Salary"
+                  />
                 </div>
               </form>
             </div>

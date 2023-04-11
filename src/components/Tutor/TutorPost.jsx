@@ -6,7 +6,7 @@ import ShowModal from '../Modal';
 import { AppContext } from '../../context/AppContext';
 import { navigate } from 'gatsby';
 function TutorPost(props) {
-  const {registerPost, currentUser, users} = useContext(AppContext);
+  const {registerPost, currentUser, users, currentUserData} = useContext(AppContext);
   const [show, setShow] = useState(false);
 
   const {
@@ -25,7 +25,7 @@ function TutorPost(props) {
   return (
     <div className="bg-white flex flex-col gap-6 p-9 rounded-[20px] border pr-20 w-[700px]">
       <div className="flex flex-row justify-start items-start gap-5 border-b border-b-slate-400 pb-6">
-        <Avatar onClick = {() => navigate('/personalpage/?id='+post.ownId)}/>
+        <Avatar onClick = {() => navigate('/personalpage/?id='+post.ownId,{state: true})}/>
         <div className='flex flex-row w-full justify-between px-[15px] items-center'>
           <div className="flex flex-col justify-between items-start">
             { post.username}
@@ -35,9 +35,11 @@ function TutorPost(props) {
             </div>
           </div>
           <div className="flex flex-col justify-between items-start">
-            <div className="w-[91px] h-[34px] rounded-[6px] bg-[#1F7BF2] p-[8px] flex flex-row justify-center items-center text-[12px]">
+            {currentUserData['Vai trò'] === 'Phụ huynh'
+            && <div className="w-[91px] h-[34px] rounded-[6px] bg-[#1F7BF2] p-[8px] flex flex-row justify-center items-center text-[12px]">
             1 Liên hệ mới
             </div>
+            }
           </div>
         </div>
       </div>
@@ -61,9 +63,9 @@ function TutorPost(props) {
           Đã liên hệ:
           {(post.status['Đã liên hệ']).length}
         </div>
-        <a onClick={() => {registerPost(post.postId, currentUser);}}>
+        {currentUserData['Vai trò'] !== 'Phụ huynh' && <a onClick={() => {registerPost(post.postId, currentUser);}}>
           <div className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer">Liên hệ ngay </div>
-        </a>
+        </a>}
       </div>
       {show && <ShowModal content={users.filter((u)=> post.status['Đã liên hệ'].includes(u.id))} onClose = {()=> {setShow(false);}} />}
     </div>

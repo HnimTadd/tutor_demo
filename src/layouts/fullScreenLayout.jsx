@@ -24,7 +24,7 @@ function FullScreen({  children }) {
             <Search />
           </div>
           <div className="flex flex-row justify-endl items-center gap-[10px]">
-            <Avatar userName="Hnimtadd" />
+            <Avatar userName="Hnimtadd"  onClick={() =>navigate('/personalpage/?id='+currentUser)}/>
             <IconButton
               onClick={() => {
                 setCurrentUser(-1);
