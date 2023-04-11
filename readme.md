@@ -4,6 +4,7 @@
 
 ```Demo:```
 1. cd into root directory
-2. Run ```npm run develop```
+2. install neccessary packages: ```npm install```
+2. Run ```npm start```
 3. open [localhost](http:\\localhost:8000) with url: ```http://localhost:8000``` 
 
