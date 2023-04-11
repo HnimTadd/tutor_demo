@@ -16,9 +16,9 @@ function FullScreen({  children }) {
   },[currentUser]);
   return (
     <div className="fixed top-0 bottom-0 w-screen h-screen flex flex-col m-0 p-0 overflow-scroll no-scrollbar bg-gray-50">
-      <div className=" h-[60px] w-full fixed top-0 bg-white z-10">
+      <div className=" h-[70px] w-full fixed top-0 bg-white flex flex-row items-center">
         <Header>
-          <div className="flex flex-row justify-start items-center gap-[20px] px-[40px]">
+          <div className="flex flex-row justify-start items-center gap-[20px]">
             <Avatar width='60px' height='60px' onClick={() => {navigate(currentUserData['Vai trò'] === 'Phụ huynh' ? '/parentpage': '/tutorpage');}}/>
 
             <Search />

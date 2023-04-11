@@ -4,7 +4,7 @@ import ShowModal from '../Modal';
 import { AppContext } from '../../context/AppContext';
 import { navigate } from 'gatsby';
 const Post = (props) => {
-  const {users, currentUser, registerPost} = useContext(AppContext);
+  const {users, currentUser, registerPost, currentUserData} = useContext(AppContext);
   const {
     post = {
       username: 'Hnimtadd',
@@ -64,11 +64,14 @@ const Post = (props) => {
         Đã liên hệ:
         {' '+post.status['Đã liên hệ'].length}
       </div>
+      {
+        currentUserData['Vai trò'] !== 'Phụ huynh' &&
       <div className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
         onClick={() => {registerPost(post.postId, currentUser);}}
       >
           Liên hệ ngay
       </div>
+      }
     </div>
     {show && <ShowModal content={users.filter((u)=> post.status['Đã liên hệ'].includes(u.id))} onClose = {()=> {setShow(false);}} />}
   </div>;
