@@ -435,7 +435,7 @@ function TutorPage() {
         </MainLayout>
       )}
       {pageState === 1 && (
-        <MainLayout
+        <MainLayout 
           pageState={pageState}
           onChangePageState={setPageState}
           leftSide={
