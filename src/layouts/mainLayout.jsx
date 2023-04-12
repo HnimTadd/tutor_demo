@@ -5,11 +5,19 @@ import Header from '../components/header';
 import Avatar from '../components/Avatar';
 import Search from '../components/Search/Search';
 import { navigate } from 'gatsby'; //import navigate from gatsby
+import NavigateBar from './NavigateBar';
 
 import { AppContext } from '../context/AppContext';
-function MainLayout({ leftSide, children, rightSide }) {
+function MainLayout({
+  leftSide,
+  children,
+  rightSide,
+  pageState,
+  onChangePageState,
+}) {
   const { currentUser, users, setCurrentUser } = useContext(AppContext);
   const currentUserData = users.filter((u) => u.id === currentUser)[0];
+
   useEffect(() => {
     if (currentUser === -1) {
       navigate('/loginpage');
@@ -18,7 +26,7 @@ function MainLayout({ leftSide, children, rightSide }) {
   return (
     // <AppContext.Consumer>
     <div className="top-0 bottom-0 w-screen h-screen flex flex-row justify-between m-0 p-0 bg-slate-100 overflow-y-scroll">
-      <div className="h-[70px] w-full fixed top-0 bg-white flex flex-row items-center z-50">
+      <div className="h-[80px] w-full fixed top-0 bg-white flex flex-row items-center z-50">
         <Header>
           <div className="flex flex-row h-full  justify-start items-center gap-[20px] ">
             <Avatar
@@ -34,7 +42,13 @@ function MainLayout({ leftSide, children, rightSide }) {
             />
             <Search />
           </div>
-          <div className="flex flex-row justify-endl items-center gap-[10px]">
+
+          <NavigateBar
+            pageState={pageState}
+            onChangePageState={onChangePageState}
+          />
+
+          <div className="flex flex-row justify-endl items-center gap-[10px] pl-16">
             <Avatar
               user={currentUserData}
               onClick={() => navigate('/personalpage/?id=' + currentUser)}
@@ -62,13 +76,11 @@ function MainLayout({ leftSide, children, rightSide }) {
           </div>
         </Header>
       </div>
-      <div className="mt-[70px] w-[350px] h-[calc(100%-70px)]">{leftSide}</div>
-      <main className="mt-[70px] right-[300px] min-w-[500px] h-[calc(100%-70px)] flex justify-center items-start">
-        <div className="flex w-[750px] h-full mt-[10px]">{children}</div>
+      <div className="mt-[85px] w-[350px] h-[calc(100%-70px)]">{leftSide}</div>
+      <main className="mt-[85px] right-[300px] min-w-[600px] h-[calc(100%-70px)] flex justify-center items-start">
+        <div className="flex w-[900px] h-full mt-[10px] justify-center">{children}</div>
       </main>
-      <div className="mt-[70px] w-[350px] h-[calc(100%-70px)]">
-        {rightSide}
-      </div>
+      <div className="mt-[75px] w-[350px] h-[calc(100%-70px)]">{rightSide}</div>
     </div>
     // </AppContext.Consumer>
   );

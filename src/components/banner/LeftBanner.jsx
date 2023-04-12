@@ -59,7 +59,7 @@ function LeftBanner() {
               </a>
               <div className=" flex flex-row justify-between w-full items-center">
                 {/* price */}
-                <p className="text-red-600 text-xl font-bold">161.000₫</p>
+                <p className="text-red-600 text-xl font-bold">{e.price}</p>
                 <a href = {e.link}>
                   <div className="text-white first-letter rounded-md px-4 py-2 bg-red-600">
                     MUA NGAY
