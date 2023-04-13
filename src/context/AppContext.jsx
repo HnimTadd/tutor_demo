@@ -24,65 +24,65 @@ export const AppContext = createContext({
 export const AppProvider = ({children}) => {
   const [posts, setPost] = useState([{
     postId:0,
-    username: 'Hnimtadd',
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
       'Đã liên hệ': [2],
       link: '/',
+      assign: [],
     },
     ownId: 1
   },
   {
     postId:1,
-    username: 'Hnimtadd',
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
       'Đã liên hệ': [2,3],
       link: '/',
+      assign: [],
     },
     ownId: 1
   },
   {
     postId:2,
-    username: 'Hnimtadd',
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
       'Đã liên hệ': [2],
       link: '/',
+      assign: [],
     },
-    ownId: 1
+    ownId: 4
   },{
     postId:3,
-    username: 'Hnimtadd',
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
       'Đã liên hệ': [2,3],
       link: '/',
+      assign: [],
     },
     ownId: 1
   },{
     postId:4,
-    username: 'Hnimtadd',
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
       'Đã liên hệ': [],
       link: '/',
+      assign: [],
     },
     ownId: 1
   },
   {
     postId:5,
-    username: 'Hnimtadd',
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
       'Đã liên hệ': [2],
       link: '/',
+      assign: [],
     },
     ownId: 1
   }
@@ -93,10 +93,20 @@ export const AppProvider = ({children}) => {
     {
       link: '',
       id: 1,
-      userName:'PhuHuynh',
+      userName:'PhuHuynh1',
       'Tên đầy đủ':'Phu huynh 1',
       'Email':'phuhuynh1@hnimtadd.com',
       'Số điện thoại': '0393939939',
+      'Vai trò': 'Phụ huynh',
+      'Địa chỉ': 'KTX khu A, đại học quốc gia, Hồ Chí Minh'
+    },
+    {
+      link: '',
+      id: 4,
+      userName:'PhuHuynh2',
+      'Tên đầy đủ':'Phu huynh 2',
+      'Email':'phuhuynh2@hnimtadd.com',
+      'Số điện thoại': '010101011',
       'Vai trò': 'Phụ huynh',
       'Địa chỉ': 'KTX khu A, đại học quốc gia, Hồ Chí Minh'
     },
@@ -152,6 +162,17 @@ export const AppProvider = ({children}) => {
       return newPost;
     }));
   };
+  const acceptPost = (postid, approveId) => {
+    setPost(posts.map((post) => {
+      if (post.postId !== postid) {
+        return post;
+      }
+      let newPost = post;
+      newPost.status.assign.push(approveId);
+      alert('Accepted');
+      return newPost;
+    }));
+  };
 
   const [currentUser, setCurrentUser] = useState(-1);
   const [registedTeacher, setRegistedTeacher] = useState([]);
@@ -186,7 +207,6 @@ export const AppProvider = ({children}) => {
     setCurrentUserData(users.filter(u => u.id === currentUser)[0]);
   }, [currentUser]);
   const postPost = (post) => {
-    // alert(post);
     setPost([post, ...posts]);
   };
   return (
@@ -206,7 +226,8 @@ export const AppProvider = ({children}) => {
       registerPost,
       postPost,
       currentUserData,
-      setCurrentUserData
+      setCurrentUserData,
+      acceptPost
     }}
     >{children}
     </AppContext.Provider>

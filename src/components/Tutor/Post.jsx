@@ -4,9 +4,9 @@ import ShowModal from '../Modal';
 import { AppContext } from '../../context/AppContext';
 import { navigate } from 'gatsby';
 const Post = (props) => {
-  const { users, currentUser, registerPost, currentUserData } =
+  const { users, currentUser, registerPost, acceptPost } =
     useContext(AppContext);
-  console.log(currentUserData);
+
   const {
     post = {
       username: 'Hnimtadd',
@@ -19,6 +19,8 @@ const Post = (props) => {
       },
     },
   } = props;
+  const postUserData = users.filter((u) => u.id === post.ownId)[0];
+  const currentUserData = users.filter((u) => u.id === currentUser)[0];
   const getTime = (time) => {
     if (time < 1) {
       return Math.floor(time * 60) + ' phút';
@@ -32,23 +34,34 @@ const Post = (props) => {
   const [show, setShow] = useState(false);
   return (
     <div className="flex flex-col gap-[15px] py-6 px-[45px] rounded-[20px] border bg-white">
-      <div className="flex flex-row justify-start items-start gap-5 border-b border-b-slate-400 pb-4">
-        <Avatar
-          width="50px"
-          height="50px"
-          onClick={() => {
-            navigate('/personalpage/?id=' + post.ownId);
-          }}
-        ></Avatar>
-        <div className="flex flex-col justify-between items-start gap-0">
-          <div className="font-bold text-[18px]">{post.username}</div>
-          <div className="flex flex-row justify-between items-center text-[13px]">
-            <div className="flex flex-col justify-center items-center  h-full">
-              {getTime((Date.now() - Date.parse(post.time)) / 1000 / 3600)}
+      <div className='flex flex-row w-full justify-between items-center px-4  border-b border-b-slate-400 pb-4'>
+        <div className="flex flex-row justify-start items-start gap-5 ">
+          <Avatar
+            width="50px"
+            height="50px"
+            onClick={() => {
+              navigate('/personalpage/?id=' + post.ownId);
+            }}
+          ></Avatar>
+          <div className="flex flex-col justify-between items-start gap-0">
+            <div className="font-bold text-[18px]">{postUserData.userName}</div>
+            <div className="flex flex-row justify-between items-center text-[13px]">
+              <div className="flex flex-col justify-center items-center  h-full">
+                {getTime((Date.now() - Date.parse(post.time)) / 1000 / 3600)}
+              </div>
+              <img className="" src="/static/earth.png" alt=""></img>
             </div>
-            <img className="" src="/static/earth.png" alt=""></img>
           </div>
         </div>
+        {
+          post.status.assign.length !== 0
+            ?
+            <div className='rounded-[10px] bg-black/[0.1] p-3'>
+              Đã đóng
+            </div>
+            :
+            null
+        } 
       </div>
       <div className="flex flex-col gap-3 border-b border-b-slate-400 pb-6">
         {post.content.split('\n').map((key, index) => {
@@ -72,16 +85,45 @@ const Post = (props) => {
           Đã liên hệ:
           {' ' + post.status['Đã liên hệ'].length}
         </div>
-        {currentUserData['Vai trò'] !== 'Phụ huynh' && (
-          <div
-            className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
-            onClick={() => {
-              registerPost(post.postId, currentUser);
-            }}
-          >
-            Liên hệ ngay
-          </div>
-        )}
+        {
+          (currentUserData && currentUserData['Vai trò'] !== 'Phụ huynh' ) &&  (
+            post.status.assign.includes(currentUser)
+              ?
+              <div
+                className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
+              >
+              Đã chấp nhận
+              </div>
+              :
+              post.status.assign.length !== 0
+                ?
+                <div
+                  className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
+                >
+                  Đã đóng
+                </div>
+                :
+                post.status['Đã liên hệ'].includes(currentUser) === true
+                  ?
+                  <div
+                    className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
+                  >
+                Đã đăng ký
+                  </div>
+                  :
+                  <div
+                    className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
+                    onClick={() => {
+                      registerPost(post.postId, currentUser);
+                    }}
+                  >
+                    {
+                      post.status.assign.includes(currentUser)
+                    }
+                Liên hệ ngay
+                  </div>
+          )
+        }
       </div>
       {show && (
         <ShowModal
@@ -91,6 +133,7 @@ const Post = (props) => {
           onClose={() => {
             setShow(false);
           }}
+          onAssign ={ currentUserData && currentUserData['Vai trò'] === 'Phụ huynh' && post.ownId === currentUser && post.status.assign.length === 0 ? (id) => {acceptPost(post.postId, id);} :  null}
         />
       )}
     </div>
