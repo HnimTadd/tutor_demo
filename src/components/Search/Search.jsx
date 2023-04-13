@@ -46,7 +46,7 @@ function Search(props) {
     return null;
   };
   return (
-    <form className="max-w-[400px] min-w-[500px] relative">
+    <form className="max-w-[400px] min-w-[250px] relative">
       <div className="relative rounded-[30%]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
