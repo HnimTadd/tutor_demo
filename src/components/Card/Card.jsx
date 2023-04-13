@@ -9,7 +9,7 @@ const Card = (props) => {
   } = props;
 
   return (
-    <div className="flex flex-col justify-start p-3 w-full h-fit rounded-[20px]">
+    <div className="flex flex-col justify-start w-full h-fit rounded-[20px] pb-4">
       <div
         className={
           'w-[full] h-[50px] flex justify-center items-center flex-row rounded-[20px] text-[19px] font-[700] gap-[10px]'
@@ -19,7 +19,7 @@ const Card = (props) => {
         <div>{header}</div>
         <div className="w-[20px] h-[20px]">{icon}</div>
       </div>
-      <div className="flex flex-col justify-center items-start gap-4 mt-4 mb-3 px-2">
+      <div className="flex flex-col justify-center items-start gap-4 mt-4 mb-3 px-8">
         {items.map((item, index) => {
           return (
             <div key={index} className="w-full px-2">

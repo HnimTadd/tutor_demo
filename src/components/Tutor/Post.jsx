@@ -74,7 +74,7 @@ const Post = (props) => {
         </div>
         {currentUserData['Vai trò'] !== 'Phụ huynh' && (
           <div
-            className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
+            className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-blue-500 text-white font-semibold hover:cursor-pointer"
             onClick={() => {
               registerPost(post.postId, currentUser);
             }}

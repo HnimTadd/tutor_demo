@@ -96,6 +96,22 @@ function TutorPage() {
       link: '',
       content: '0123.456.789',
     },
+    {
+      link: '',
+      content: 'Trợ giúp',
+      style: {
+        fontWeight: '700',
+        color: 'black',
+      },
+    },
+    {
+      link: '',
+      content: 'Nhật kí báo cáo',
+      style: {
+        fontWeight: '700',
+        color: 'black',
+      },
+    },
   ];
   const items3 = [
     {
@@ -197,6 +213,22 @@ function TutorPage() {
     {
       link: '',
       content: 'Thứ 6',
+      style: {
+        fontWeight: '700',
+        color: 'black',
+      },
+    },
+    {
+      link: '',
+      content: ' Toán 11 ( 7:00 - 8:30 )',
+    },
+    {
+      link: '',
+      content: ' Toán 10 ( 13:00 - 15:00 )',
+    },
+    {
+      link: '',
+      content: 'Thứ 7',
       style: {
         fontWeight: '700',
         color: 'black',
@@ -362,6 +394,7 @@ function TutorPage() {
     <div>
       {pageState !== 1 && (
         <MainLayout
+          isTutor={1}
           leftSide={
             <SideBar>
               <div className="w-full h-fit flex flex-col justify-start items-center  rounded-[20px] border bg-white">
@@ -371,19 +404,21 @@ function TutorPage() {
                   header={'Tìm kiếm gia sư'}
                   items={items}
                 ></ContentCard>
-                <ContentCard
-                  icon={<img src={CallImg} />}
-                  color={'#D1EEDB'}
-                  header={'Hỗ trợ nhanh'}
-                  items={items2}
-                ></ContentCard>
-              </div>
-              <div className="w-full h-fit flex flex-col justify-start items-center  rounded-[20px] border bg-white">
+
                 <ContentCard
                   icon={<img src={NewImg}></img>}
                   color={'#D1EEDB'}
                   header={'Đăng ký làm gia sư'}
                   items={items3}
+                ></ContentCard>
+              </div>
+
+              <div className="w-full h-fit flex flex-col justify-start items-center  rounded-[20px] border bg-white">
+                <ContentCard
+                  icon={<img src={CallImg} />}
+                  color={'#D1EEDB'}
+                  header={'Hỗ trợ nhanh'}
+                  items={items2}
                 ></ContentCard>
               </div>
               <LeftBanner />
@@ -435,7 +470,8 @@ function TutorPage() {
         </MainLayout>
       )}
       {pageState === 1 && (
-        <MainLayout 
+        <MainLayout
+          isTutor={1}
           pageState={pageState}
           onChangePageState={setPageState}
           leftSide={

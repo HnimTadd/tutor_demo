@@ -9,6 +9,7 @@ import Phone from './phone.png';
 import LogOut from './logOut.png';
 import Avatar from './avatar.png';
 import Meet from './meet.png';
+import Tutor from './tutor_logo.png';
 
 export const CallImg = Call;
 export const CityImg = City;
@@ -21,3 +22,4 @@ export const Phonemg = Phone;
 export const LogOutImg = LogOut;
 export const AvatarImg = Avatar;
 export const MeetImg = Meet;
+export const TutorLogo = Tutor;

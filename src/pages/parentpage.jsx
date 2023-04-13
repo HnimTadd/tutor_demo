@@ -246,6 +246,7 @@ function parentPage() {
   ];
   return (
     <MainLayout
+      isTutor={0}
       leftSide={
         <SideBar>
           <div className="w-full h-fit flex flex-col justify-start items-center  rounded-[20px] border bg-white">
@@ -295,7 +296,7 @@ function parentPage() {
               ))}
             </div>
           </div>
-          <RightBanner/>
+          <RightBanner />
         </SideBar>
       }
     >

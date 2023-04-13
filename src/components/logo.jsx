@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { AvatarImg } from '../assets';
-function Avatar(props) {
+function Logo(props) {
   const {
     width = '40px',
     height = '40px',
@@ -18,7 +18,7 @@ function Avatar(props) {
     >
       <div
         className={
-          'rounded-[100%] overflow-hidden min-w-[40px] min-h-[40px] border-solid border-0 outline-none bg-blue-100'
+          'overflow-hidden min-w-[40px] min-h-[40px] border-solid border-0 outline-none bg-blue-100'
         }
         style={{
           width,
@@ -37,4 +37,4 @@ function Avatar(props) {
     </div>
   );
 }
-export default Avatar;
+export default Logo;

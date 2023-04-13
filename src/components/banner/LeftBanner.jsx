@@ -32,7 +32,7 @@ function LeftBanner() {
   ];
   return (
     <div className="w-full mt-10">
-      <div className="w-[80%] bg-white">
+      <div className="w-[90%] bg-white">
         <div className="bg-[#f94f30] p-4 flex justify-center h-[80px]">
           <svg
             viewBox="0 0 192 65"

@@ -3,9 +3,11 @@ import React, { useContext, useEffect } from 'react';
 import { IconButton } from '@mui/material';
 import Header from '../components/header';
 import Avatar from '../components/Avatar';
+import Logo from '../components/logo';
 import Search from '../components/Search/Search';
 import { navigate } from 'gatsby'; //import navigate from gatsby
 import NavigateBar from './NavigateBar';
+import { TutorLogo } from '../assets';
 
 import { AppContext } from '../context/AppContext';
 function MainLayout({
@@ -14,6 +16,7 @@ function MainLayout({
   rightSide,
   pageState,
   onChangePageState,
+  isTutor,
 }) {
   const { currentUser, users, setCurrentUser } = useContext(AppContext);
   const currentUserData = users.filter((u) => u.id === currentUser)[0];
@@ -29,8 +32,9 @@ function MainLayout({
       <div className="h-[80px] w-full fixed top-0 bg-white flex flex-row items-center z-50">
         <Header>
           <div className="flex flex-row h-full  justify-start items-center gap-[20px] ">
-            <Avatar
-              width="60px"
+            <Logo
+              link={TutorLogo}
+              width="80px"
               height="60px"
               onClick={() => {
                 navigate(
@@ -43,10 +47,12 @@ function MainLayout({
             <Search />
           </div>
 
-          <NavigateBar
-            pageState={pageState}
-            onChangePageState={onChangePageState}
-          />
+          {isTutor === 1 && (
+            <NavigateBar
+              pageState={pageState}
+              onChangePageState={onChangePageState}
+            />
+          )}
 
           <div className="flex flex-row justify-endl items-center gap-[10px] pl-16">
             <Avatar
@@ -76,9 +82,11 @@ function MainLayout({
           </div>
         </Header>
       </div>
-      <div className="mt-[85px] w-[350px] h-[calc(100%-70px)]">{leftSide}</div>
+      <div className="mt-[85px] w-[300px] h-[calc(100%-70px)]">{leftSide}</div>
       <main className="mt-[85px] right-[300px] min-w-[600px] h-[calc(100%-70px)] flex justify-center items-start">
-        <div className="flex w-[900px] h-full mt-[10px] justify-center">{children}</div>
+        <div className="flex w-[900px] h-full mt-[10px] justify-center">
+          {children}
+        </div>
       </main>
       <div className="mt-[75px] w-[350px] h-[calc(100%-70px)]">{rightSide}</div>
     </div>
