@@ -71,7 +71,7 @@ const  ShowModal= (props) =>{
                               assign.includes(user.id)
                                 ?
                                 <div
-                                  className='w-fit h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
+                                  className='w-[140px] h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
                                   onClick={() => {
                                   }
                                   }
@@ -80,7 +80,7 @@ const  ShowModal= (props) =>{
                                 </div>
                                 :
                                 <div
-                                  className='w-fit h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
+                                  className='w-[140px] h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
                                   onClick={() => {
                                     onAssign(user.id);
                                   }

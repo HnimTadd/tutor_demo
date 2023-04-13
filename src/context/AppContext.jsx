@@ -51,10 +51,10 @@ export const AppProvider = ({children}) => {
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
-      'Đã liên hệ': [],
+      'Đã liên hệ': [3, 2],
       link: '/',
       assign: [],
-      done: true,
+      done: false,
     },
     ownId: 4
   },{
