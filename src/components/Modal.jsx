@@ -2,7 +2,7 @@ import { navigate } from 'gatsby';
 import React from 'react';
 import Avatar from './Avatar';
 const  ShowModal= (props) =>{
-  const {content, onClose, onAssign} = props;
+  const {content, onClose, onAssign, assign} = props;
   return (
     <>
       <div
@@ -65,18 +65,30 @@ const  ShowModal= (props) =>{
                           Xem thông tin
                         </div>
                         {
-                          onAssign ?
-
-                            <div
-                              className='w-fit h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
-                              onClick={() => {
-                                onClose();
-                                onAssign(user.id);
-                              }
-                              }
-                            >
-                          Chấp nhận
-                            </div>
+                          onAssign
+                            ?
+                            (
+                              assign.includes(user.id)
+                                ?
+                                <div
+                                  className='w-fit h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
+                                  onClick={() => {
+                                  }
+                                  }
+                                >
+                                  Đã Chấp nhận
+                                </div>
+                                :
+                                <div
+                                  className='w-fit h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
+                                  onClick={() => {
+                                    onAssign(user.id);
+                                  }
+                                  }
+                                >
+                                Chấp nhận
+                                </div>
+                            )
                             :
                             null
                         }

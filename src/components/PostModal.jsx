@@ -18,7 +18,8 @@ const  PostModal= (props) =>{
       status: {
         'Đã liên hệ': [],
         link: '/',
-        assign: []
+        assign: [],
+        done: false,
       },
       ownId: currentUserData.id
     };

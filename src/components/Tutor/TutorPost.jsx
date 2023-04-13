@@ -19,7 +19,7 @@ function TutorPost(props) {
       ownId: 1
     }
   } = props;
-  const {registerPost, currentUser, users, acceptPost} = useContext(AppContext);
+  const {registerPost, currentUser, users, acceptPost, onClosePost} = useContext(AppContext);
   const [show, setShow] = useState(false);
   const currentUserData = users.filter((u) => u.id === currentUser)[0];
   const postUserData = users.filter((u) => u.id === post.ownId)[0];
@@ -27,26 +27,49 @@ function TutorPost(props) {
 
   return (
     <div className="bg-white flex flex-col gap-6 p-9 rounded-[20px] border pr-20 w-[700px]">
-      <div className="flex flex-row justify-start items-start gap-5 border-b border-b-slate-400 pb-6">
-        <Avatar onClick = {() => navigate('/personalpage/?id='+post.ownId,{state: true})}/>
-        <div className='flex flex-row w-full justify-between px-[15px] items-center'>
-          <div className="flex flex-col justify-between items-start">
-            { postUserData.userName}
-            <div className="flex flex-row justify-between items-center text-xs">
-              { `${Math.floor((Date.now() - Date.parse(post.time)) / 1000 / 3600)} giờ`}
-              <img src="/static/earth.png" alt="" />
+      <div className='flex flex-row w-full justify-between items-center px-4  border-b border-b-slate-400 pb-6 '>
+        <div className="flex flex-row justify-start items-start gap-5 ">
+          <Avatar onClick = {() => navigate('/personalpage/?id='+post.ownId,{state: true})}/>
+          <div className='flex flex-row w-full justify-between px-[15px] items-center'>
+            <div className="flex flex-col justify-between items-start">
+              { postUserData.userName}
+              <div className="flex flex-row justify-between items-center text-xs">
+                { `${Math.floor((Date.now() - Date.parse(post.time)) / 1000 / 3600)} giờ`}
+                <img src="/static/earth.png" alt="" />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col justify-between items-start">
-            {
+            <div className="flex flex-row justify-between items-start">
+              {/* {
               currentUserData && currentUserData['Vai trò'] === 'Phụ huynh'
             &&
             <div className="w-[91px] h-[34px] rounded-[6px] bg-[#1F7BF2] p-[8px] flex flex-row justify-center items-center text-[12px]">
             1 Liên hệ mới
             </div>
-            }
+            } */}
+
+            </div>
           </div>
         </div>
+        {
+          post.ownId === currentUser && post.status.done === false
+            ?
+            <div
+              className='rounded-[10px] bg-black/[0.1] p-2'
+              onClick={() => {onClosePost(post.postId);}}
+            >
+              Đóng 
+            </div>
+            :
+            post.status.done  
+              ?
+              <div
+                className='rounded-[10px] bg-black/[0.1] p-2'
+              >
+              Đã Đóng 
+              </div>
+              :
+              null
+        } 
       </div>
       <div className="flex flex-col gap-3 border-b border-b-slate-400 pb-6">
         {

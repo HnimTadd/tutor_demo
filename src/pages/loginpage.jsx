@@ -167,5 +167,7 @@ const loginPage = () => {
 
   );
 };
+export const Head = () => <title>Login Page</title>;
+
 export default loginPage;
 

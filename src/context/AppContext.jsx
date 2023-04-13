@@ -27,9 +27,10 @@ export const AppProvider = ({children}) => {
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
-      'Đã liên hệ': [2],
+      'Đã liên hệ': [3],
       link: '/',
       assign: [],
+      done: false,
     },
     ownId: 1
   },
@@ -38,9 +39,10 @@ export const AppProvider = ({children}) => {
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
-      'Đã liên hệ': [2,3],
+      'Đã liên hệ': [3],
       link: '/',
-      assign: [],
+      assign: [3],
+      done: false,
     },
     ownId: 1
   },
@@ -49,9 +51,10 @@ export const AppProvider = ({children}) => {
     time: '2023-04-06T12:51:00.000+07:00',
     content: 'Môn: Toán\nHình thức: Offline\nĐịa điểm: 381 Phan Văn Trị, Gò Vấp, Thành phố Hồ Chí Minh\nYêu cầu: Sinh viên nữ, khối ngành A, điểm thi thpt từ 27 trở lên\nLương: 2.800.000 / tháng',
     status: {
-      'Đã liên hệ': [2],
+      'Đã liên hệ': [],
       link: '/',
       assign: [],
+      done: true,
     },
     ownId: 4
   },{
@@ -61,7 +64,8 @@ export const AppProvider = ({children}) => {
     status: {
       'Đã liên hệ': [2,3],
       link: '/',
-      assign: [],
+      done: true,
+      assign: [2,3],
     },
     ownId: 1
   },{
@@ -71,6 +75,7 @@ export const AppProvider = ({children}) => {
     status: {
       'Đã liên hệ': [],
       link: '/',
+      done: false,
       assign: [],
     },
     ownId: 1
@@ -83,6 +88,7 @@ export const AppProvider = ({children}) => {
       'Đã liên hệ': [2],
       link: '/',
       assign: [],
+      done: false,
     },
     ownId: 1
   }
@@ -173,6 +179,17 @@ export const AppProvider = ({children}) => {
       return newPost;
     }));
   };
+  const onClosePost = (postid) => {
+    setPost(posts.map((post)=> {
+      if (post.postId !== postid) {
+        return post;
+      }
+      let newPost = post;
+      newPost.status.done = true;
+      alert('Close post');
+      return newPost;
+    }));
+  };
 
   const [currentUser, setCurrentUser] = useState(-1);
   const [registedTeacher, setRegistedTeacher] = useState([]);
@@ -227,7 +244,8 @@ export const AppProvider = ({children}) => {
       postPost,
       currentUserData,
       setCurrentUserData,
-      acceptPost
+      acceptPost,
+      onClosePost
     }}
     >{children}
     </AppContext.Provider>

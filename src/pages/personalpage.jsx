@@ -69,5 +69,6 @@ const personalPage = () => {
     </FullScreen>
   );
 };
+export const Head = () => <title>Setting</title>;
 
 export default personalPage;

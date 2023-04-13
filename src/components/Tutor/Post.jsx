@@ -4,7 +4,7 @@ import ShowModal from '../Modal';
 import { AppContext } from '../../context/AppContext';
 import { navigate } from 'gatsby';
 const Post = (props) => {
-  const { users, currentUser, registerPost, acceptPost } =
+  const { users, currentUser, registerPost, acceptPost, onClosePost } =
     useContext(AppContext);
 
   const {
@@ -54,13 +54,24 @@ const Post = (props) => {
           </div>
         </div>
         {
-          post.status.assign.length !== 0
+          post.ownId === currentUser && post.status.done === false
             ?
-            <div className='rounded-[10px] bg-black/[0.1] p-3'>
-              Đã đóng
+            <div
+              className='rounded-[10px] bg-black/[0.1] p-3'
+              onClick={() => {onClosePost(post.postId);}}
+            >
+              Đóng 
             </div>
             :
-            null
+            post.status.done  
+              ?
+              <div
+                className='rounded-[10px] bg-black/[0.1] p-3'
+              >
+              Đã Đóng 
+              </div>
+              :
+              null
         } 
       </div>
       <div className="flex flex-col gap-3 border-b border-b-slate-400 pb-6">
@@ -95,20 +106,21 @@ const Post = (props) => {
               Đã chấp nhận
               </div>
               :
-              post.status.assign.length !== 0
+              post.status.done
                 ?
-                <div
-                  className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
-                >
-                  Đã đóng
-                </div>
+                null
+                // <div
+                //   className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
+                // >
+                //   Đã đóng
+                // </div>
                 :
                 post.status['Đã liên hệ'].includes(currentUser) === true
                   ?
                   <div
                     className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
                   >
-                Đã đăng ký
+                    Đã đăng ký
                   </div>
                   :
                   <div
@@ -120,7 +132,7 @@ const Post = (props) => {
                     {
                       post.status.assign.includes(currentUser)
                     }
-                Liên hệ ngay
+                    Liên hệ ngay
                   </div>
           )
         }
@@ -133,7 +145,10 @@ const Post = (props) => {
           onClose={() => {
             setShow(false);
           }}
-          onAssign ={ currentUserData && currentUserData['Vai trò'] === 'Phụ huynh' && post.ownId === currentUser && post.status.assign.length === 0 ? (id) => {acceptPost(post.postId, id);} :  null}
+          onAssign ={ currentUserData && currentUserData['Vai trò'] === 'Phụ huynh' && post.ownId === currentUser && post.status.done === false ? (id) => {acceptPost(post.postId, id);} :  null}
+          assign = {
+            post.status.assign
+          }
         />
       )}
     </div>
