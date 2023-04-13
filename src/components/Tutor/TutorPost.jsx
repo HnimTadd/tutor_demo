@@ -39,14 +39,6 @@ function TutorPost(props) {
               </div>
             </div>
             <div className="flex flex-row justify-between items-start">
-              {/* {
-              currentUserData && currentUserData['Vai trò'] === 'Phụ huynh'
-            &&
-            <div className="w-[91px] h-[34px] rounded-[6px] bg-[#1F7BF2] p-[8px] flex flex-row justify-center items-center text-[12px]">
-            1 Liên hệ mới
-            </div>
-            } */}
-
             </div>
           </div>
         </div>
@@ -89,7 +81,7 @@ function TutorPost(props) {
         <div className="flex justify-center items-center w-[116px] h-[39px] rounded-[10px] bg-[rgb(15,14,14)]/[0.08] hover:cursor-pointer"
           onClick={() => setShow(true)}>
           Đã liên hệ:
-          {(post.status['Đã liên hệ']).length}
+          {' ' +(post.status['Đã liên hệ']).length}
         </div>
         {currentUserData && currentUserData['Vai trò'] !== 'Phụ huynh' && <a onClick={() => {registerPost(post.postId, currentUser);}}>
           {
@@ -137,6 +129,7 @@ function TutorPost(props) {
       {show && <ShowModal
         content={users.filter((u)=> post.status['Đã liên hệ'].includes(u.id))}
         onClose = {()=> {setShow(false);}} 
+        assign={post.status.assign}
         onAssign ={ currentUserData && currentUserData['Vai trò'] === 'Phụ huynh' && post.ownId === currentUser ? (id) => {acceptPost(post.postId, id);} :  null}
       />}
     </div>
