@@ -2,13 +2,13 @@ import { navigate } from 'gatsby';
 import React from 'react';
 import Avatar from './Avatar';
 const  ShowModal= (props) =>{
-  const {content, onClose} = props;
+  const {content, onClose, onAssign, assign} = props;
   return (
     <>
       <div
         className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
       >
-        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+        <div className="relative w-auto my-6 mx-auto max-w-[70%]">
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
@@ -30,7 +30,7 @@ const  ShowModal= (props) =>{
               {
                 content.map((user ,index)=> {
                   return (
-                    <div key={index} className='flex flex-row justify-between items-center w-[700px]'>
+                    <div key={index} className='flex flex-row justify-between items-center w-[900px]'>
                       <div className='flex flex-row justify-start gap-[15px]' >
                         <Avatar/>
                         <div className='flex flex-col gap-[8px] w-[400px]'>
@@ -53,7 +53,7 @@ const  ShowModal= (props) =>{
                       </div>
                       <div>
                       </div>
-                      <div>
+                      <div className='flex flex-row gap-[10px]'>
                         <div
                           className='w-fit h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
                           onClick={() => {
@@ -64,6 +64,34 @@ const  ShowModal= (props) =>{
                         >
                           Xem thông tin
                         </div>
+                        {
+                          onAssign
+                            ?
+                            (
+                              assign.includes(user.id)
+                                ?
+                                <div
+                                  className='w-[140px] h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
+                                  onClick={() => {
+                                  }
+                                  }
+                                >
+                                  Đã Chấp nhận
+                                </div>
+                                :
+                                <div
+                                  className='w-[140px] h-[50px] rounded-[10px] border flex justify-center items-center p-4 hover:cursor-pointer'
+                                  onClick={() => {
+                                    onAssign(user.id);
+                                  }
+                                  }
+                                >
+                                Chấp nhận
+                                </div>
+                            )
+                            :
+                            null
+                        }
                       </div>
                     </div>
                   );

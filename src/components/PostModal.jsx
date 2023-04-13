@@ -18,10 +18,13 @@ const  PostModal= (props) =>{
       status: {
         'Đã liên hệ': [],
         link: '/',
+        assign: [],
+        done: false,
       },
       ownId: currentUserData.id
     };
     onPost(post);
+    console.log(post);
     onClose();
   };
   return (
